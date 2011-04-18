@@ -32,7 +32,8 @@ class PagesController < ApplicationController
       req = Net::HTTP::Get.new(request_url)
 
       resp, data = http.request(req)
-
+      puts resp
+      puts data
       return data
     end
     return nil
