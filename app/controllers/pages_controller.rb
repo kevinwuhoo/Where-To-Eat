@@ -23,7 +23,7 @@ class PagesController < ApplicationController
     timestamp = Time.now.to_i.to_s
     puts API_KEY
     puts API_SECRET
-    sig = Digest::MD5.hexdigest( API_KEY+SHARED_SECRET+timestamp )
+    sig = Digest::MD5.hexdigest( API_KEY+API_SECRET+timestamp )
 
     request_url = "/#{API_VERSION}/ipinfo/#{ip_address}?apikey=#{API_KEY}&sig=#{sig}"
 
