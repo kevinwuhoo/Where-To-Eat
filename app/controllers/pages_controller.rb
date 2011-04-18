@@ -3,7 +3,9 @@ class PagesController < ApplicationController
   def index
     env['HTTP_X_REAL_IP'] ||= env['REMOTE_ADDR']
     @ip = env['HTTP_X_REAL_IP']
-    @loc = query_quova(@ip)
+    @resp, @data = query_quova(@ip)
+    @asdf = ENV["quova_api_key"]
+    @fdsa = ENV["quova_api_secret"]
     
     
   end
@@ -32,9 +34,8 @@ class PagesController < ApplicationController
       req = Net::HTTP::Get.new(request_url)
 
       resp, data = http.request(req)
-      puts resp
-      puts data
-      return data
+
+      return resp, data
     end
     return nil
   end
