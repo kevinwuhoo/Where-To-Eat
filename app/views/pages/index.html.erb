@@ -1,4 +1,59 @@
-<h1><%= @ip %></h1>
-<%= @data %>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("a.button").click(function(){
+        $(this).toggleClass("down");
+    });
+
+});
+
+</script>
+
+<header>
+	<h1> Where to Eat? </h1>
+	<h3> For those who spend hours deciding where to eat. <h3>
+</header>
+<div id="container">
+
+<div class="column" id="left">
+	<h1>Categories</h1>
+	<select>
+		<option value="african">African</option>
+		<option value="american">American</option>
+		<option value="asian">Asian</option>
+		<option value="euro">European</option>
+		<option value="general">General</option>
+		<option value="latin">Latin America</option>
+		<option value="other">Other</option>
+		<option value="middle">Middle Eastern</option>
+	</select>
+	<br />
+	<select size="10">
+		<option value="african">adfsadfsfsa</option>
+		<option value="american">skfsdjkfhsk</option>
+	</select>
+	
+</div>
+<div class="column" id="middle">
+	<h1>Distance</h1>
+	<ul>
+	<li><a class="button">5 mi</a></li>
+	<li><a class="button">10 mi</a></li>
+	<li><a class="button">15 mi</a></li>
+	<li><a class="button">20 mi</a></li>
+	</ul>
+</div>
+
+<div class="column" id="right">
+	<h1>Price</h1>
+	<ul>
+	<li><a class="button">$</a></li>
+	<li><a class="button">$$</a></li>
+	<li><a class="button">$$$</a></li>
+	<li><a class="button">$$$$</a></li>
+	</ul>
+
+</div>
+</div>
 
 

@@ -6,7 +6,6 @@ gem 'rails', '3.0.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
-
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -18,8 +17,9 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'ruby-debug19'
 
 # Bundle the extra gems:
+gem 'oauth'
 # gem 'bj'
-# gem 'nokogiri'
+gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
