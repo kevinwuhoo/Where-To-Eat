@@ -1,14 +1,3 @@
-
-<script type="text/javascript">
-$(document).ready(function(){
-    $("a.button").click(function(){
-        $(this).toggleClass("down");
-    });
-
-});
-
-</script>
-
 <header>
 	<h1> Where to Eat? </h1>
 	<h3> For those who spend hours deciding where to eat. <h3>
@@ -17,21 +6,21 @@ $(document).ready(function(){
 
 <div class="column" id="left">
 	<h1>Categories</h1>
-	<select>
-		<option value="african">African</option>
+	
+	<div id="catcontainer">
+	<select id="sel">
+		<option>Random!</option>
 		<option value="american">American</option>
 		<option value="asian">Asian</option>
 		<option value="euro">European</option>
-		<option value="general">General</option>
+		<option value="other">General/Other</option>
 		<option value="latin">Latin America</option>
-		<option value="other">Other</option>
 		<option value="middle">Middle Eastern</option>
 	</select>
-	<br />
-	<select size="10">
-		<option value="african">adfsadfsfsa</option>
-		<option value="american">skfsdjkfhsk</option>
-	</select>
+	</div>
+	<div id="categories">
+		Don't care? I'll pick one!
+	</div>
 	
 </div>
 <div class="column" id="middle">
@@ -57,3 +46,79 @@ $(document).ready(function(){
 </div>
 
 
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("a.button").click(function(){
+        $(this).toggleClass("down");
+    });
+    $("td.cat").live ("click", function(event){
+        $(this).toggleClass("down");
+    });
+
+});
+
+var asian_cat = ["Asian Fusion", "Burmese", "Cambodian", "Chinese", "Filipino", "Hawaiian", "Himalayan/Nepalese", "Indian", "Indonesian", "Japanese", "Korean", "Malaysian", "Mongolian", "Singaporean", "Sushi Bars", "Taiwanese" , "Thai", "Vietnamese"];
+var amer_cat = ["Barbeque", "Breakfast & Brunch", "Burgers", "Cajun/Creole", "Cheesesteaks", "Delis", "Diners", "Fast Food", "Hot Dogs", "Fish & Chips", "Soul Food", "Southern", "Steakhouses", "Tex-Mex"];
+var euro_cat = ["Belgian", "British", "Creperies", "German", "French", "Greek", "Hungarian", "Irish", "Italian", "Polish", "Russian", "Scandinavian", "Turkish", "Ukrainian"];
+var middle_cat = ["Afghan", "Caribbean", "Halal", "Mediterranean", "Pakistani", "Persian/Iranian"];
+var latin_cat = ["Argentine", "Brazilian", "Caribbean", "Cuban", "Mexican", "Peruvian", "Portuguese", "Spanish", "Tapas Bars"];
+var other_cat = ["African", "American", "Buffets", "Ethiopian", "Fondue", "Food Stands", "Gluten-Free", "Kosher", "Latin", "American", "Moroccan", "Pizza", "Sandwiches", "Seafood", "Soup", "Vegan", "Vegetarian"];
+
+document.getElementById("sel").onchange=function(){
+	var str = ""; 
+	var sel = this.options[this.selectedIndex].value;
+    var i = 0;
+	var j;
+	var cat;
+	if (sel === "american") 
+	{
+		cat = amer_cat;
+	} 
+	else if (sel == "asian")
+	{
+		cat = asian_cat;
+	}
+	else if (sel == "euro")
+	{
+		cat = euro_cat;
+	}
+	else if (sel == "middle")
+	{
+		cat = middle_cat;
+	}
+	else if (sel == "latin")
+	{
+		cat = latin_cat;
+	}
+	else if (sel == "other")
+	{
+		cat = other_cat;
+	}
+	else 
+	{
+		cat = "none";
+		str = "Don't care? I'll pick one!"
+	}
+	
+	if (cat != "none")
+	{ 
+		str += "<table id=\"cat_table\">";
+		while (i < cat.length)
+		{
+			str += "<tr>";
+			for (j = 0; j < 3; j++) 
+			{
+				if (cat[i] == undefined)
+					break;
+				str += "<td class=\"cat\"><a>" + cat[i] + "</a></td>";
+				i++;
+			}
+			str += "</tr>";
+		}
+	}
+	
+	document.getElementById("categories").innerHTML = str;
+	};
+
+</script>

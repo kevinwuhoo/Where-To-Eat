@@ -15,9 +15,8 @@ class PagesController < ApplicationController
     @doc  = Nokogiri::HTML(@data)
     @lat = @doc.xpath("//latitude").inner_html
     @lon = @doc.xpath("//longitude").inner_html
+    #content = JSON.parse(query_yelp @lat, @lon)
 
-    content = JSON.parse(query_yelp @lat, @lon)
-    
   end
 
   def query_yelp(lat, lon)

@@ -78,6 +78,32 @@ ul li {
 	margin: 10px;
 	}
 	
+#catcontainer {
+	text-align: center;
+	padding-top:10px;
+	padding-bottom:10px;
+	}
+
+#cat_table {
+	width: 350px;
+	padding: 5px;
+	font-size: 15px;
+	line-height: 35px;
+	}
+#cat_table td {
+	padding: 0px 10px 0px;
+	}
+#cat_table td.down {
+	color: #413E4A;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	background: -webkit-gradient(linear, left top, left bottom, from(#B38183), to(#D9B8B9));
+	background: -moz-linear-gradient(top,  #B38183,  #D9B8B9);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#B38183', endColorstr='#D9B8B9');
+	}
+	
 a.button {
 	display: inline-block;
 	height: 43px;
