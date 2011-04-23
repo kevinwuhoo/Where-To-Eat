@@ -1,6 +1,6 @@
 <header>
 	<h1> Where to Eat? </h1>
-	<h3> For those who spend hours deciding than eating. <h3>
+	<h3> For those who spend more time deciding than eating. <h3>
 </header>
 <div id="container">
 
@@ -8,56 +8,77 @@
 	<h1>Categories</h1>
 
 	<div id="catcontainer">
-<!--	<select id="sel">
-		<option>Random!</option>
-		<option value="american">American</option>
-		<option value="asian">Asian</option>
-		<option value="euro">European</option>
-		<option value="other">General/Other</option>
-		<option value="latin">Latin America</option>
-		<option value="middle">Middle Eastern</option>
-	</select> -->
+
 	<a class = "cat" id="american">American</a> | <a class = "cat" id="asian">Asian</a> | <a class = "cat" id="european">European</a>
 	<br />
 	<a class = "cat" id= "latin">Latin</a> | <a class = "cat" id="mideast">Middle Eastern</a> | <a class = "cat" id="other">Other</a>
 	</div>
+	
 	<div id="categories">
-		Don't care? I'll pick one!
+		<br />
+		<p style="text-align:center">Don't care? Don't select one for random!</p>
 	</div>
 	
 </div>
 <div class="column" id="middle">
 	<h1>Distance</h1>
 	<ul>
-	<li><a class="button">5 mi</a></li>
-	<li><a class="button">10 mi</a></li>
-	<li><a class="button">15 mi</a></li>
-	<li><a class="button">20 mi</a></li>
+	<li><a class="button" id="5mi">5 mi</a></li>
+	<li><a class="button" id="10mi">10 mi</a></li>
+	<li><a class="button" id="15mi">15 mi</a></li>
+	<li><a class="button" id="20mi">20 mi</a></li>
 	</ul>
 </div>
 
 <div class="column" id="right">
 	<h1>Price</h1>
 	<ul>
-	<li><a class="button">$</a></li>
-	<li><a class="button">$$</a></li>
-	<li><a class="button">$$$</a></li>
-	<li><a class="button">$$$$</a></li>
+	<li><a class="button" id="price1">$</a></li>
+	<li><a class="button" id="price2">$$</a></li>
+	<li><a class="button" id="price3">$$$</a></li>
+	<li><a class="button" id="price4">$$$$</a></li>
 	</ul>
-
-</div>
 </div>
 
-
+<div id="form">
+<%= form_tag("nom", :method => "get") do %>
+	<%= hidden_field_tag(:form_categories) %>
+	<%= hidden_field_tag(:form_distance) %>
+	<%= hidden_field_tag(:form_price, "5") %>
+	<%= submit_tag "Find Me Noms!", :id => "submit"%>
+<% end %>
+</div>
+</div> <!-- end container -->
 
 <script type="text/javascript">
 $(document).ready(function(){
     $("a.button").click(function(){
+	
+		// Check which column and "undown" the elements 
+		// Adds price/distance to form
+		if($(this).parent().parent().parent().attr("id") === "right") {
+			$("#form_price").val($(this).html());
+		} else if($(this).parent().parent().parent().attr("id") === "middle") {
+			$("#form_distance").val($(this).html());
+		}
+		// Then mark element as down
+		$(this).parent().parent().find(".button").removeClass("down");
         $(this).toggleClass("down");
     });
+
+	// Adds categoies to form and allows category toggle
     $("td.cat").live ("click", function(event){
         $(this).toggleClass("down");
+		var cat = $("#categories").find("td.cat.down");
+		// Make all categories into string
+		var all_cat = "";
+		for (var i = 0; i < cat.length; i++) {
+			all_cat += cat[i].innerHTML + ",";
+		}
+		$("#form_categories").val(all_cat);
     });
+
+	// Displays categories according to supercategories
 	$('.cat').click(function() {
 	  display_categories(eval($(this).attr('id')));
 	});

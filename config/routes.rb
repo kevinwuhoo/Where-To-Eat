@@ -1,5 +1,8 @@
 WhereToEat::Application.routes.draw do
 
+  match "nom" => "pages#nom"
+  match "test" => "pages#test"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
