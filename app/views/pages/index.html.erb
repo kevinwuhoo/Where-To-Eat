@@ -1,12 +1,14 @@
 <header>
 	<h1> Where to Eat? </h1>
-	<h3> For those who spend hours deciding where to eat. <h3>
+	<h3> For those who spend hours deciding than eating. <h3>
 </header>
 <div id="container">
 
 <div class="column" id="left">
 	<h1>Categories</h1>
-	
+	American | Asian | European
+	<br />
+	Latin | West Asian | Other
 	<div id="catcontainer">
 	<select id="sel">
 		<option>Random!</option>
@@ -55,7 +57,6 @@ $(document).ready(function(){
     $("td.cat").live ("click", function(event){
         $(this).toggleClass("down");
     });
-
 });
 
 var asian_cat = ["Asian Fusion", "Burmese", "Cambodian", "Chinese", "Filipino", "Hawaiian", "Himalayan/Nepalese", "Indian", "Indonesian", "Japanese", "Korean", "Malaysian", "Mongolian", "Singaporean", "Sushi Bars", "Taiwanese" , "Thai", "Vietnamese"];
@@ -111,11 +112,12 @@ document.getElementById("sel").onchange=function(){
 			{
 				if (cat[i] == undefined)
 					break;
-				str += "<td class=\"cat\"><a>" + cat[i] + "</a></td>";
+				str += "<td class=\"cat\">" + cat[i] + "</td>";
 				i++;
 			}
 			str += "</tr>";
 		}
+		str += "</table>";
 	}
 	
 	document.getElementById("categories").innerHTML = str;

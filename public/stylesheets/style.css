@@ -83,7 +83,7 @@ ul li {
 	padding-top:10px;
 	padding-bottom:10px;
 	}
-
+	
 #cat_table {
 	width: 350px;
 	padding: 5px;
@@ -92,6 +92,7 @@ ul li {
 	}
 #cat_table td {
 	padding: 0px 10px 0px;
+	cursor: pointer;
 	}
 #cat_table td.down {
 	color: #413E4A;
