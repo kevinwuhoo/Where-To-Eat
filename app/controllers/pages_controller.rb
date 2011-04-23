@@ -1,10 +1,9 @@
 class PagesController < ApplicationController
   # http://amaras-tech.co.uk/people/morgan/article/52
   def index
-    require 'open-uri'
-    
-    env['HTTP_X_REAL_IP'] ||= env['REMOTE_ADDR']
-    @ip = env['HTTP_X_REAL_IP']
+    '''
+    env["HTTP_X_REAL_IP"] ||= env["REMOTE_ADDR"]
+    @ip = env["HTTP_X_REAL_IP""]
     
     if @ip == "127.0.0.1"
       @resp, @data = query_quova("128.54.44.220")
@@ -16,7 +15,7 @@ class PagesController < ApplicationController
     @lat = @doc.xpath("//latitude").inner_html
     @lon = @doc.xpath("//longitude").inner_html
     #content = JSON.parse(query_yelp @lat, @lon)
-
+    '''
   end
 
   def query_yelp(lat, lon)

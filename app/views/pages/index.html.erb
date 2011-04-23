@@ -6,11 +6,9 @@
 
 <div class="column" id="left">
 	<h1>Categories</h1>
-	American | Asian | European
-	<br />
-	Latin | West Asian | Other
+
 	<div id="catcontainer">
-	<select id="sel">
+<!--	<select id="sel">
 		<option>Random!</option>
 		<option value="american">American</option>
 		<option value="asian">Asian</option>
@@ -18,7 +16,10 @@
 		<option value="other">General/Other</option>
 		<option value="latin">Latin America</option>
 		<option value="middle">Middle Eastern</option>
-	</select>
+	</select> -->
+	<a class = "cat" id="american">American</a> | <a class = "cat" id="asian">Asian</a> | <a class = "cat" id="european">European</a>
+	<br />
+	<a class = "cat" id= "latin">Latin</a> | <a class = "cat" id="mideast">Middle Eastern</a> | <a class = "cat" id="other">Other</a>
 	</div>
 	<div id="categories">
 		Don't care? I'll pick one!
@@ -57,69 +58,39 @@ $(document).ready(function(){
     $("td.cat").live ("click", function(event){
         $(this).toggleClass("down");
     });
+	$('.cat').click(function() {
+	  display_categories(eval($(this).attr('id')));
+	});
 });
 
-var asian_cat = ["Asian Fusion", "Burmese", "Cambodian", "Chinese", "Filipino", "Hawaiian", "Himalayan/Nepalese", "Indian", "Indonesian", "Japanese", "Korean", "Malaysian", "Mongolian", "Singaporean", "Sushi Bars", "Taiwanese" , "Thai", "Vietnamese"];
-var amer_cat = ["Barbeque", "Breakfast & Brunch", "Burgers", "Cajun/Creole", "Cheesesteaks", "Delis", "Diners", "Fast Food", "Hot Dogs", "Fish & Chips", "Soul Food", "Southern", "Steakhouses", "Tex-Mex"];
-var euro_cat = ["Belgian", "British", "Creperies", "German", "French", "Greek", "Hungarian", "Irish", "Italian", "Polish", "Russian", "Scandinavian", "Turkish", "Ukrainian"];
-var middle_cat = ["Afghan", "Caribbean", "Halal", "Mediterranean", "Pakistani", "Persian/Iranian"];
-var latin_cat = ["Argentine", "Brazilian", "Caribbean", "Cuban", "Mexican", "Peruvian", "Portuguese", "Spanish", "Tapas Bars"];
-var other_cat = ["African", "American", "Buffets", "Ethiopian", "Fondue", "Food Stands", "Gluten-Free", "Kosher", "Latin", "American", "Moroccan", "Pizza", "Sandwiches", "Seafood", "Soup", "Vegan", "Vegetarian"];
+var asian = ["Asian Fusion", "Burmese", "Cambodian", "Chinese", "Filipino", "Hawaiian", "Himalayan/Nepalese", "Indian", "Indonesian", "Japanese", "Korean", "Malaysian", "Mongolian", "Singaporean", "Sushi Bars", "Taiwanese" , "Thai", "Vietnamese"];
+var american = ["Barbeque", "Breakfast & Brunch", "Burgers", "Cajun/Creole", "Cheesesteaks", "Delis", "Diners", "Fast Food", "Hot Dogs", "Fish & Chips", "Soul Food", "Southern", "Steakhouses", "Tex-Mex"];
+var european = ["Belgian", "British", "Creperies", "German", "French", "Greek", "Hungarian", "Irish", "Italian", "Polish", "Russian", "Scandinavian", "Turkish", "Ukrainian"];
+var mideast = ["Afghan", "Caribbean", "Halal", "Mediterranean", "Pakistani", "Persian/Iranian"];
+var latin = ["Argentine", "Brazilian", "Caribbean", "Cuban", "Mexican", "Peruvian", "Portuguese", "Spanish", "Tapas Bars"];
+var other = ["African", "American", "Buffets", "Ethiopian", "Fondue", "Food Stands", "Gluten-Free", "Kosher", "Latin", "American", "Moroccan", "Pizza", "Sandwiches", "Seafood", "Soup", "Vegan", "Vegetarian"];
 
-document.getElementById("sel").onchange=function(){
+
+function display_categories (cat){
 	var str = ""; 
-	var sel = this.options[this.selectedIndex].value;
     var i = 0;
 	var j;
-	var cat;
-	if (sel === "american") 
-	{
-		cat = amer_cat;
-	} 
-	else if (sel == "asian")
-	{
-		cat = asian_cat;
-	}
-	else if (sel == "euro")
-	{
-		cat = euro_cat;
-	}
-	else if (sel == "middle")
-	{
-		cat = middle_cat;
-	}
-	else if (sel == "latin")
-	{
-		cat = latin_cat;
-	}
-	else if (sel == "other")
-	{
-		cat = other_cat;
-	}
-	else 
-	{
-		cat = "none";
-		str = "Don't care? I'll pick one!"
-	}
 	
-	if (cat != "none")
-	{ 
-		str += "<table id=\"cat_table\">";
-		while (i < cat.length)
+	str += "<table id=\"cat_table\">";
+	while (i < cat.length)
+	{
+		str += "<tr>";
+		for (j = 0; j < 3; j++) 
 		{
-			str += "<tr>";
-			for (j = 0; j < 3; j++) 
-			{
-				if (cat[i] == undefined)
-					break;
-				str += "<td class=\"cat\">" + cat[i] + "</td>";
-				i++;
-			}
-			str += "</tr>";
+			if (cat[i] == undefined)
+				break;
+			str += "<td class=\"cat\">" + cat[i] + "</td>";
+			i++;
 		}
-		str += "</table>";
+		str += "</tr>";
 	}
-	
+	str += "</table>";
+
 	document.getElementById("categories").innerHTML = str;
 	};
 

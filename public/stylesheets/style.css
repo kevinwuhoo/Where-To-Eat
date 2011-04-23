@@ -80,8 +80,9 @@ ul li {
 	
 #catcontainer {
 	text-align: center;
-	padding-top:10px;
-	padding-bottom:10px;
+	padding-top:0px;
+	padding-bottom:0px;
+	font-size:20px;
 	}
 	
 #cat_table {
