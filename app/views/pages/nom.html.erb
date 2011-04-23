@@ -1,0 +1,68 @@
+<header>
+	<h1> Where to Eat? </h1>
+	<h3> For those who spend more time deciding than eating. <h3>
+</header>
+
+<script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=false">
+</script>
+<script type="text/javascript">
+  function initialize() {
+    //var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var latlng = new google.maps.LatLng(<%=@lat%>, <%=@lng%>);
+    var myOptions = {
+      zoom: 15,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("right"),
+        myOptions);
+  }
+
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+  var yelp = $.parseJSON(<%= @stores.to_json.html_safe %>);
+  function setContainer(index) {
+	if (yelp[index].cross_streets == null)
+	  yelp[index].cross_streets = "";
+	else
+	  yelp[index].cross_streets += "<br />";
+	var rate_str = "";
+	
+	for (var i = 0; i < yelp[index].rate; i++)
+	  rate_str += "	★"
+	if (yelp[index].rate_half == "half")
+	  rate_str += "½";
+  	document.getElementById('name').innerHTML = "<a href=\"" + yelp[index].url + "\" target=\"_blank\">" + 
+                                                 yelp[index].name + "</a>";
+  	document.getElementById('categories').innerHTML = yelp[index].categories;
+  	document.getElementById('rating').innerHTML = rate_str;
+  	document.getElementById('phone').innerHTML = yelp[index].phone;
+  	document.getElementById('address').innerHTML = yelp[index].address + "<br />" +
+                                                   yelp[index].cross_streets +
+                                                   yelp[index].city + ", " +
+                                                   yelp[index].state_code + " " +
+                                                   yelp[index].postal_code + " ";
+  }
+  setContainer(0);
+
+  initialize();
+});
+
+</script>
+
+<div id="container" style="font-size: 25px">
+	
+	<div class="result" id="left">
+	<h1 id="name"></h1>
+	<h3 id="categories"><h3>
+	<h3 id="rating"><h3>
+	<h3 id="phone"><h3>
+	<h3 id="address"><h3>
+	</div>
+		
+	<div class="result" id="right"></div>
+</div> <!-- end container -->
