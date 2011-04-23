@@ -82,8 +82,8 @@ class PagesController < ApplicationController
     access_token = OAuth::AccessToken.new(consumer, token, token_secret)
 
     path_arr = ["/v2/search?"]
-    #path_arr << "&ll=#{lat},#{lng}"
-    path_arr << "&ll=37.771008,-122.41175"
+    path_arr << "&ll=#{lat},#{lng}"
+    #path_arr << "&ll=37.771008,-122.41175"    # Yelp HQ
     
     if cat.nil?
       path_arr << "&category_filter=restaurants"
